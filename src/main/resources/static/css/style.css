@@ -125,7 +125,7 @@ h3 {
 
 body {
   color: #fff;
-  background-image: url("../images/cyb-logo.jpeg");
+  /*background-image: url("../images/cyb-logo.jpeg");*/
   background-repeat: no-repeat;
   background-size: cover;
   -moz-background-size: cover;
@@ -139,7 +139,9 @@ body {
 
 .main {
   padding: 60px 0;
-  position: relative; }
+  position: relative;
+  
+  background-color:#F3F5F6 }
 
 .container {
    border-radius: 10px;
