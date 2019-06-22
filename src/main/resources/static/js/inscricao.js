@@ -4,7 +4,7 @@ $(document).ready(function(){
 	$('#celular').mask('(00) 00000-0000');
 	$('#cpf').mask('000.000.000-00', {reverse: false});
 	
-	$("#appointment-form").submit(function(event){debugger;
+	$("#appointment-form").submit(function(event){ 
 		event.preventDefault();
 		
 		var candidato = getCandidato();

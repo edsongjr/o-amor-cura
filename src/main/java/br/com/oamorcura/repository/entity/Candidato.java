@@ -24,7 +24,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Candidato {
 	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
 	@Column(nullable=false)
