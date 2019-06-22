@@ -40,12 +40,16 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
+		
+		
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 		<dependency>
-		    <groupId>postgresql</groupId>
+		    <groupId>org.postgresql</groupId>
 		    <artifactId>postgresql</artifactId>
-		    <version>9.3-1100-jdbc41</version>
+		    <version>42.2.5</version>
 		</dependency>
+
+
 		
 		<dependency>
 			<groupId>org.projectlombok</groupId>
