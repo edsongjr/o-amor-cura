@@ -29,6 +29,8 @@ public class CandidatoDetalheDTO {
 	private String descricaoDoenca;
 	
 	private String motivoConsulta;
+	
+	private String rendaMensal;
 
 	public CandidatoDetalheDTO(Candidato candidato) {
 		this.id = candidato.getId();
@@ -40,6 +42,7 @@ public class CandidatoDetalheDTO {
 		this.contatos = ContatoCandidatoDetalheDTO.toDTOList(candidato.getContatos());
 		this.descricaoDoenca = candidato.getDescricaoDoenca();
 		this.motivoConsulta = candidato.getMotivoConsulta();
+		this.rendaMensal = candidato.getRendaMensal();
 	}
 
 }
