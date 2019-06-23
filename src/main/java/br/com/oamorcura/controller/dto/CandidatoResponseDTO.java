@@ -19,17 +19,14 @@ public class CandidatoResponseDTO {
 	@JsonFormat(pattern="dd/MM/yyyy")
 	private LocalDate dataNascimento;
 	
-	private EnderecoResponseDTO endereco;
-	
 	public CandidatoResponseDTO(Candidato candidato) {
 		this.id = candidato.getId();
 		this.nome = candidato.getNome();
 		this.cpf = candidato.getCpf();
 		this.dataNascimento = candidato.getDataNascimento();
-		this.endereco = new EnderecoResponseDTO(candidato.getEndereco());
 	}
 
-	public static List<CandidatoResponseDTO> toEntityList(List<Candidato> candidatos) {
+	public static List<CandidatoResponseDTO> toDTOList(List<Candidato> candidatos) {
 		return candidatos.stream().map(CandidatoResponseDTO::new).collect(Collectors.toList());
 	}
 }

@@ -35,7 +35,7 @@ public class CandidatoInscricaoDTO {
 	
 	@NotNull
 	@Valid
-	private EnderecoInscricaoDTO endereco;
+	private EnderecoCandidatoDTO endereco;
 	
 	@NotEmpty
 	@Size(min=2, max=2)
@@ -48,8 +48,11 @@ public class CandidatoInscricaoDTO {
 	@Size(min=5)
 	private String motivoConsulta;
 	
+	@NotNull
+	private String rendaMensal;
+	
 	public Candidato toEntity() {
-		Candidato candidato = new Candidato(null, nome, cpf, rg, dataNascimento, endereco.toEntiy(), null, descricaoDoenca, motivoConsulta);
+		Candidato candidato = new Candidato(null, nome, cpf, rg, rendaMensal, dataNascimento, endereco.toEntiy(), null, descricaoDoenca, motivoConsulta);
 		List<Contato> contatos = ContatoInscricaoDTO.toEntityList(this.contatos, candidato);
 		candidato.setContatos(contatos);
 		return candidato;

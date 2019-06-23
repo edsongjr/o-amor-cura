@@ -1,6 +1,5 @@
 package br.com.oamorcura.repository.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -24,10 +23,8 @@ public class Contato {
 	private Long id;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(nullable=false)
 	private TipoContato tipoContato;
 	
-	@Column(nullable=false)
 	private String descricao;
 	
 	@ManyToOne

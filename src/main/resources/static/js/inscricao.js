@@ -3,6 +3,7 @@ $(document).ready(function(){
 	$('#dataNascimento').mask('00/00/0000');
 	$('#celular').mask('(00) 00000-0000');
 	$('#cpf').mask('000.000.000-00', {reverse: false});
+	$('#rendaMensal').mask('00.000,00', {reverse: true})
 	
 	$("#appointment-form").submit(function(event){ 
 		event.preventDefault();
@@ -25,13 +26,16 @@ function getCandidato(){
 		"cpf": $("#cpf").val(),
 		"rg": $("#rg").val(),
 		"dataNascimento": $("#dataNascimento").val(),
+		"rendaMensal": $("#rendaMensal").val().replace(',', '.').replace(".", ","),
 		"endereco": {
 			"rua": $("#rua").val(),
 			"numero": $("#numero").val(),
-			"bairro": $("#bairro").val()
+			"bairro": $("#bairro").val(),
+			"complemento": $("#bairro").val(),
+			"cidade": $("#cidade").val(),
+			"estado": $("#estado").val()
 		},
 		"contatos": getContatos(),
-		
 		"descricaoDoenca": $("#descricaoDoenca").val(),
 		"motivoConsulta": $("#motivoConsulta").val()
 	}
