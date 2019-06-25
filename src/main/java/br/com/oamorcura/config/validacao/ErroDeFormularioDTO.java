@@ -8,5 +8,4 @@ import lombok.Data;
 public class ErroDeFormularioDTO {
 	private String campo;
 	private String erro;
-
 }
