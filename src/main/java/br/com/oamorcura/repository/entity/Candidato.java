@@ -30,9 +30,7 @@ public class Candidato {
 	
 	private String cpf;
 	
-	private String rg;
-	
-	private String rendaMensal;
+	private Double rendaMensal;
 	
 	private LocalDate dataNascimento;
 	

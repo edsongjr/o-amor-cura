@@ -7,15 +7,26 @@ $(document).ready(function(){
 	
 	$("#appointment-form").submit(function(event){ 
 		event.preventDefault();
-		
-		var candidato = getCandidato();
-		if(validarCampos(candidato)){
-			inscrever(candidato)
-		}
+		inscrever(getCandidato())
 	});
 	
 	$(".close").click(function(){
-		$("#mensagemSucesso").hide();
+		$(this).parents("div:eq(0)").hide();
+	});
+	
+	$("#dataNascimento").change(function(){ 
+		var dataNascimento = $(this).val();
+		var dataNascimentoMoment = moment([dataNascimento.substr(6) , dataNascimento.substr(3,2) -1, dataNascimento.substr(0, 2)]);
+		if(!dataNascimentoMoment.isValid() || dataNascimentoMoment.isAfter(moment())){
+			$("#mensagensValidacao span:eq(0)").text("");
+			$("#mensagensValidacao span:eq(0)").text("Digite uma data de nascimento válida");
+			$("#mensagensValidacao").show();
+			$(this).val("");
+			window.scroll({
+				top: 0,
+				behavior: 'smooth'
+			});
+		}
 	});
 });
 
@@ -26,7 +37,7 @@ function getCandidato(){
 		"cpf": $("#cpf").val(),
 		"rg": $("#rg").val(),
 		"dataNascimento": $("#dataNascimento").val(),
-		"rendaMensal": $("#rendaMensal").val().replace(',', '.').replace(".", ","),
+		"rendaMensal": $("#rendaMensal").val().replace(/\./g, '').replace(/,/, "."),
 		"endereco": {
 			"rua": $("#rua").val(),
 			"numero": $("#numero").val(),
@@ -58,28 +69,43 @@ function getContatos(){
 	return contatos;
  }
 
-function validarCampos(candidato){
-	return true;
-}
 
 function inscrever(candidato){
 	var xhttp = new XMLHttpRequest();
 	xhttp.open("POST", "/api/candidatos", true);
-	xhttp.setRequestHeader("Content-type", "application/json")
+	xhttp.setRequestHeader("Content-type", "application/json");
 	xhttp.onreadystatechange = function() {
-		if ( this.status == 201) {
-			window.scroll({
-				  top: 0,
-				  behavior: 'smooth'
+		if ( this.readyState == 4) {
+			if(this.status == 201 ){
+				window.scroll({
+					top: 0,
+					behavior: 'smooth'
 				});
-			$("#mensagemSucesso").show();
-			$("#appointment-form input:not([type='submit'])").val("");
-			$("#appointment-form textarea").val("");
-		}else{
-			alert("Erro: " + this.status)
+				$("#mensagemSucesso").show();
+				$("#appointment-form input:not([type='submit'])").val("");
+				$("#appointment-form textarea").val("");
+				$("#mensagensValidacao").hide()
+			}else{
+				tratarErrosRequisicao(this)
+			}
 		}
 	};
 	  
 	  xhttp.send(JSON.stringify(candidato));
+}
+
+
+function tratarErrosRequisicao(xhttpErros){
+	var $mensagensValidacao = $("#mensagensValidacao");
+	$mensagensValidacao.find("span:eq(0)").text("");
+	var errosForm = JSON.parse(xhttpErros.responseText);
+	errosForm.forEach(function(erroForm){
+		$mensagensValidacao.find("span:eq(0)").html($mensagensValidacao.find("span:eq(0)").html() + erroForm.erro + "<br>")
+	});
+	$mensagensValidacao.show();
+	window.scroll({
+		top: 0,
+		behavior: 'smooth'
+	});
 }
 	

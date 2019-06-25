@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+
 @RestControllerAdvice
 public class ErroDeValidacaoHandler {
 	
@@ -20,7 +22,7 @@ public class ErroDeValidacaoHandler {
 	private MessageSource messageSource;
 
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	@ExceptionHandler(MethodArgumentNotValidException.class)
+	@ExceptionHandler({MethodArgumentNotValidException.class, InvalidFormatException.class})
 	public List<ErroDeFormularioDTO> handle(MethodArgumentNotValidException exception) {
 		List<ErroDeFormularioDTO> dto = new ArrayList<>();
 		List<FieldError> fielErrors = exception.getBindingResult().getFieldErrors();

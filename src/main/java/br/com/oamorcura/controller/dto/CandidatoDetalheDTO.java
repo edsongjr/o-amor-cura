@@ -17,8 +17,6 @@ public class CandidatoDetalheDTO {
 	
 	private String cpf;
 	
-	private String rg;
-	
 	@JsonFormat(pattern="dd/MM/yyyy")
 	private LocalDate dataNascimento;
 	
@@ -30,13 +28,12 @@ public class CandidatoDetalheDTO {
 	
 	private String motivoConsulta;
 	
-	private String rendaMensal;
+	private Double rendaMensal;
 
 	public CandidatoDetalheDTO(Candidato candidato) {
 		this.id = candidato.getId();
 		this.nome = candidato.getNome();
 		this.cpf = candidato.getCpf();
-		this.rg = candidato.getRg();
 		this.dataNascimento = candidato.getDataNascimento();
 		this.endereco = new EnderecoCandidatoDTO(candidato.getEndereco());
 		this.contatos = ContatoCandidatoDetalheDTO.toDTOList(candidato.getContatos());
@@ -44,5 +41,4 @@ public class CandidatoDetalheDTO {
 		this.motivoConsulta = candidato.getMotivoConsulta();
 		this.rendaMensal = candidato.getRendaMensal();
 	}
-
 }

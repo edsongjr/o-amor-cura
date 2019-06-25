@@ -7,7 +7,10 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -21,38 +24,39 @@ import lombok.NoArgsConstructor;
 public class CandidatoInscricaoDTO {
 	
 	@NotBlank
-	@Size(min=5)
+	@Size(min=5, message = "Nome deve ter pelo menos 5 caracteres")
 	private String nome;
 	
 	@NotBlank
+	@CPF
 	private String cpf;
 	
 	private String rg;
 	
 	@NotNull
 	@JsonFormat(pattern="dd/MM/yyyy")
+	@Past(message = "Data inválida")
 	private LocalDate dataNascimento;
 	
 	@NotNull
 	@Valid
 	private EnderecoCandidatoDTO endereco;
 	
-	@NotEmpty
-	@Size(min=2, max=2)
+	@NotEmpty(message = "Informe um email ou um celular")
 	@Valid
 	private List<ContatoInscricaoDTO> contatos;
 	
 	private String descricaoDoenca;
 	
 	@NotBlank
-	@Size(min=5)
+	@Size(min=5, message = "Descreva melhor por que você merece a consulta")
 	private String motivoConsulta;
 	
 	@NotNull
-	private String rendaMensal;
+	private Double rendaMensal;
 	
 	public Candidato toEntity() {
-		Candidato candidato = new Candidato(null, nome, cpf, rg, rendaMensal, dataNascimento, endereco.toEntiy(), null, descricaoDoenca, motivoConsulta);
+		Candidato candidato = new Candidato(null, nome, cpf, rendaMensal, dataNascimento, endereco.toEntiy(), null, descricaoDoenca, motivoConsulta);
 		List<Contato> contatos = ContatoInscricaoDTO.toEntityList(this.contatos, candidato);
 		candidato.setContatos(contatos);
 		return candidato;

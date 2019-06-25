@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Projeto o amor cura</title>
 
+	<script type="text/javascript" th:src="@{/webjars/momentjs/2.24.0/moment.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/jquery-mask-plugin/1.13.4/src/jquery.mask.js}"></script>
@@ -34,6 +35,12 @@
 			    <span aria-hidden="true">&times;</span>
 			  </button>
 			</div>
+			<div class="alert alert-primary alert-dismissible fade show" role="alert" id="mensagensValidacao" style="display: none">
+			   <span>teste</span>
+			   <button type="button" class="close" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
                 <h2>Informe seus dados abaixo</h2>
                 <h3>Dados pessoais</h3>
                 <div class="form-group-1">
@@ -47,8 +54,8 @@
                 </div>
                 <div class="form-group-2">
                     <h3>Contatos</h3>
-                    <input type="email" name="email" id="email" placeholder="Email" required />
-                    <input type="text" name="celular" id="celular" placeholder="Celular (DDD) + número " required />
+                    <input type="email" name="email" id="email" placeholder="Email"  />
+                    <input type="text" name="celular" id="celular" placeholder="Celular (DDD) + número " />
                 </div>
 
                 <div class="form-group-2">
