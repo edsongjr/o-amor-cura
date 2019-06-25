@@ -35,7 +35,7 @@ public class CandidatoInscricaoDTO {
 	
 	@NotNull
 	@JsonFormat(pattern="dd/MM/yyyy")
-	@Past(message = "Data inválida")
+	@Past(message = "Data deve ser anterior a data de hoje")
 	private LocalDate dataNascimento;
 	
 	@NotNull
