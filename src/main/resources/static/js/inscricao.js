@@ -42,7 +42,7 @@ function getCandidato(){
 			"rua": $("#rua").val(),
 			"numero": $("#numero").val(),
 			"bairro": $("#bairro").val(),
-			"complemento": $("#bairro").val(),
+			"complemento": $("#complemento").val(),
 			"cidade": $("#cidade").val(),
 			"estado": $("#estado").val()
 		},
